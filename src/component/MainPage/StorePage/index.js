@@ -31,7 +31,7 @@ const StorePage = (props) => {
     }, [props.match.params.id])
 
     return <div>
-        <div style={{ backgroundImage: `url(${bannerMock})`, position: 'relative', height: '250px', width: `100%`, color: "white" }}>
+        <div style={{ backgroundImage: `url(${bannerMock})`, position: 'relative', height: '250px', width: `100%`, color: "white", backgroundSize: "cover"}}>
             <div style={{ position: 'absolute', left: '10px', bottom: '0px' }}>
                 <h1>{store.name}</h1>
             </div>
