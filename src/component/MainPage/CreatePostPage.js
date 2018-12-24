@@ -99,8 +99,8 @@ const CreatePostPage = (props) => {
 
     if (locationSelected) {
         useEffect(() => {
-            firebase.getStoreNameFromId(storeId, (name) => {
-                setStoreName(name)
+            firebase.getStoreFromId(storeId, (store) => {
+                setStoreName(store.name)
             })
         }, [storeId])
         return (

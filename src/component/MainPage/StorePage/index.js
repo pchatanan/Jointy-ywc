@@ -13,8 +13,22 @@ const StorePage = (props) => {
     const firebase = useContext(FirebaseContext)
 
     useEffect(() => {
-        firebase.readStore(props.match.params.id).then((data) => { setStore(data.val()) })
-    }, store.length)
+        firebase.getPromosFromStore(props.match.params.id, (promoArray) => {
+            // setStore(promoArray)
+            console.log(promoArray)
+            promoArray.map( (item) => {
+                firebase.getPromoFromId(item, (promoDetail) => {
+                    var temp = store.storePromos
+                    temp.push(promoDetail)
+
+                    var temp2 = store
+                    temp2.storePromos = temp
+
+                    setStore(temp2)
+                })
+            })
+        })
+    }, [props.match.params.id])
 
     return <div>
         <div style={{ backgroundImage: `url(${bannerMock})`, position: 'relative', height: '250px', width: `100%`, color: "white" }}>

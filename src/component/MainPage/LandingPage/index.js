@@ -8,17 +8,34 @@ import Recommendation from './Recommendation'
 
 const LandingPage = (props) => {
     const [locations, setLocations] = useState([])
+    const [storeArray, setStoreArray] = useState([])
 
     const firebase = useContext(FirebaseContext)
 
+    const locationId = 'locationId1'
+
     useEffect(() => {
         firebase.readStoresFromLocations().then((snap) => setLocations(snap.val()))
-    }, [locations.length])
+        firebase.getLocationFromId(locationId, handleLocation) 
+    }, [locationId])
+
+    const handleLocation = (location) => {
+        console.log(location)
+        let name = []
+        Object.keys(location.locationStores).forEach(async key => {
+            await firebase.getStoreFromId(key, (store) => {
+                var temp = storeArray
+                temp.push(store)
+                setStoreArray(temp)
+            })
+        })
+    }
     
     return (
         <div>
             <img src={BannerMock} />
-            <Nearby title="Nearby" cards={[{}, {}, {}]} />
+            <sub>{locations.detail && locations.detail.name}</sub>
+            <Nearby title="Nearby" storeArray={storeArray} cards={[{}, {}, {}]} />
 
             <Locations title="Location" locations={locations} />
 

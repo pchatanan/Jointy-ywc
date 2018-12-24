@@ -113,9 +113,9 @@ class Firebase {
     return this.database.ref('/locations').once('value')
   }
 
-  getStoreNameFromId = (storeId, handleStoreName) => {
+  getStoreFromId = (storeId, handleStoreName) => {
     const dbRef = this.database.ref()
-    const storeName = dbRef.child("stores").child(storeId).child("name")
+    const storeName = dbRef.child("stores").child(storeId)
     return storeName.on('value', (snapshot) => {
       handleStoreName(snapshot.val())
     });
