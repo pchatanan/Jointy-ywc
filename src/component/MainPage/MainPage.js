@@ -7,5 +7,6 @@ import Account from './Account'
 import CreatePostPage from './CreatePostPage'
 import StorePage from './StorePage'
 import LocationPage from './LocationPage'
+import VotePage from './VotePage'
 
-export { MainChat, MainContact, LandingPage, RegisterPage, LoginPage, Account, CreatePostPage, StorePage, LocationPage }
+export { MainChat, MainContact, LandingPage, RegisterPage, LoginPage, Account, CreatePostPage, StorePage, LocationPage, VotePage }

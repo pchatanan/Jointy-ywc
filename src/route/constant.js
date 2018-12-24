@@ -9,4 +9,4 @@ export const CREATE_POST = '/createPost'
 export const STORE = "/stores/:id"
 export const LOCATION = "/location/:id"
 export const PROMOTIONS = "/stores/:id/promotions"
-export const PROMOTION_DETAIL = "/stores/:id/detail"
+export const PROMOTION_DETAIL = "/detail"
