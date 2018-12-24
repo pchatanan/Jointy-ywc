@@ -5,6 +5,7 @@ import BannerMock from '../../../res/images/bannerMock.jpg'
 // import CardWrapper from './CardWrapper'
 import Locations from './Location';
 import Recommendation from './Recommendation'
+import './index.css'
 
 const LandingPage = (props) => {
     const [locations, setLocations] = useState([])
@@ -17,7 +18,7 @@ const LandingPage = (props) => {
 
     useEffect(() => {
         firebase.readStoresFromLocations().then((snap) => setLocations(snap.val()))
-        firebase.getLocationFromId(locationId, handleLocation) 
+        firebase.getLocationFromId(locationId, handleLocation)
     }, [locationId])
 
     const handleLocation = (location) => {
@@ -31,14 +32,22 @@ const LandingPage = (props) => {
             })
         })
     }
-    
+
     return (
         <div>
-            <img style={{width: "100%"}}src={BannerMock} />
-            <sub>{locations.detail && locations.detail.name}</sub>
-            <Nearby title={"Nearby - " + locationName} storeArray={storeArray} cards={[{}, {}, {}]} />
-            <Locations title="Location" locations={locations} />
-            <Recommendation title="Recommendation" cards={[{}, {}, {}]} />
+            <div className="only-mobile">
+                <img src={BannerMock} />
+                <sub>{locations.detail && locations.detail.name}</sub>
+
+                <Nearby title={"Nearby - " + locationName} storeArray={storeArray} cards={[{}, {}, {}]} />
+
+                <Locations title="Location" locations={locations} />
+
+                <Nearby title={"Recommendation"} storeArray={storeArray} cards={[{}, {}, {}]} />
+            </div>
+            <div className="desktop">
+                <h3>Please open on mobile view to continue.</h3>
+            </div>
         </div>
     )
 }
