@@ -38,6 +38,36 @@ class Firebase {
       profile_picture : imageUrl
     });
   }
+
+  createPost = (postData, storeId) => {
+    const dbRef = this.database.ref()
+    const postId = dbRef.child("posts").push().key
+    const {posterId, title} = postData
+    
+    // add new promotion
+    const promoId = dbRef.child("promos").push().key
+    const promoData = {
+      detail: {
+        storeId: storeId,
+        title: title,
+        verified: false
+      },
+      promoPosts: {
+        postId: true
+      }
+    }
+
+    var updates = {};
+    updates['/posts/' + postId] = postData;
+    updates['/users/' + posterId + '/postCreated/' + postId] = true;
+    updates['/promos/' + promoId] = promoData;
+    updates['/stores/' + storeId + '/storePromos/' + promoId] = true;
+
+    return dbRef.update(updates);
+
+  }
+
+
 }
 
 export default Firebase;

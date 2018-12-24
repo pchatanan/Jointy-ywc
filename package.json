@@ -6,12 +6,15 @@
     "firebase": "^5.5.9",
     "mobx": "^5.8.0",
     "mobx-react": "^5.4.3",
+    "moment": "^2.23.0",
     "prop-types": "latest",
     "react": "^16.7.0-alpha.2",
+    "react-datetime": "^2.16.3",
     "react-dom": "^16.7.0-alpha.2",
     "react-hamburger-menu": "^1.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "react-select": "^2.1.2",
     "styled-components": "^4.1.1"
   },
   "scripts": {
