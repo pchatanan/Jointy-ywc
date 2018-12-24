@@ -35,15 +35,15 @@ class Firebase {
     return this.database.ref('users/' + userId + '/detail').set({
       username: name,
       email: email,
-      profile_picture : imageUrl
+      profile_picture: imageUrl
     });
   }
 
   createPost = (postData, storeId) => {
     const dbRef = this.database.ref()
     const postId = dbRef.child("posts").push().key
-    const {posterId, title} = postData
-    
+    const { posterId, title } = postData
+
     // add new promotion
     const promoId = dbRef.child("promos").push().key
     const promoData = {
@@ -67,6 +67,17 @@ class Firebase {
 
   }
 
+  readStore = (storeId) => {
+    return this.database.ref(`/stores/${storeId}`).once('value')
+  }
+
+  readStores = () => {
+    return this.database.ref(`/stores`).once('value')
+  }
+
+  readStoresFromLocations = () => {
+    return this.database.ref('/locations').once('value')
+  }
 
 }
 

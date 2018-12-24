@@ -1,41 +1,28 @@
-import React, { Component, useContext } from 'react'
-import { observer } from 'mobx-react'
-import { MobxContext } from '../../Mobx/index'
+import React, { Component, useContext, useEffect, useState } from 'react'
+import { FirebaseContext } from '../../Firebase'
+import Nearby from './Nearby'
 import BannerMock from '../../../res/images/bannerMock.jpg'
-import CardWrapper from './CardWrapper'
-
-const Test = observer((props) => {
-    const add = () => {
-        props.mobx.value.set(props.mobx.value.get() + 1)
-    }
-
-    return <div>
-        <div>{props.mobx.value.get()}</div>
-        <button onClick={add}>add</button>
-    </div>
-})
+// import CardWrapper from './CardWrapper'
+import Locations from './Location';
+import Recommendation from './Recommendation'
 
 const LandingPage = (props) => {
-    const mobx = useContext(MobxContext)
+    const [locations, setLocations] = useState([])
 
+    const firebase = useContext(FirebaseContext)
+
+    useEffect(() => {
+        firebase.readStoresFromLocations().then((snap) => setLocations(snap.val()))
+    }, [locations.length])
+    
     return (
         <div>
             <img src={BannerMock} />
-            <CardWrapper title="Nearby" cards={[{}, {}, {}]} />
+            <Nearby title="Nearby" cards={[{}, {}, {}]} />
 
-            <CardWrapper title="Location" cards={[{
-                store: {
-                    storeId: '1',
-                    title: "Lakabung university"
-                }
-            }, {
-                store: {
-                    storeId: '2',
-                    title: "Paragon"
-                }
-            }, {}]} />
+            <Locations title="Location" locations={locations} />
 
-            <CardWrapper title="Recommendation" cards={[{}, {}, {}]} />
+            <Recommendation title="Recommendation" cards={[{}, {}, {}]} />
         </div>
     )
 }
