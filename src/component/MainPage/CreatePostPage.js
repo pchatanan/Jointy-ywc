@@ -87,14 +87,13 @@ const CreatePostPage = (props) => {
 
     const handleChange = (newValue, actionMeta) => {
         console.log("**************")
-        console.log(storeId)
-        setTitle(newValue)
+        console.log(newValue)
+        setTitle(newValue.value)
         if (actionMeta.action === 'create-option') {
-            setNewPromo(newValue)
-
+            setNewPromo(null)
         }
         else {
-            setNewPromo(null)
+            setNewPromo(newValue.value)
         }
     };
 

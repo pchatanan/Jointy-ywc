@@ -48,6 +48,9 @@ class Firebase {
 
     var updates = {};
 
+    console.log("-----------")
+    console.log(oldPromoId)
+
     // add new promotion
     let promoId = null
     if(!oldPromoId){
