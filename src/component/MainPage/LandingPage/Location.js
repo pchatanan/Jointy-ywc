@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 import recommandationMock from '../../../res/images/recommendationMock.jpg'
 
 const Card = (props) => {
-    return (<div style={{ padding: '3px' }}>
-        <img style={{ borderRadius: '5px', width: '100%', height: '125px' }} src={props.store.detail.url} />
-        <Link to={`/location/${props.link}`}>{props.store ? props.store.detail.name : ""}</Link>
-    </div>)
+    return (
+        <Link to={`/location/${props.link}`}>
+            <div style={{ padding: '3px' }}>
+                <img style={{ borderRadius: '5px', width: '100%', height: '125px' }} src={props.store.detail.url} />
+                {props.store ? props.store.detail.name : ""}
+            </div>
+        </Link>)
 }
 
 
