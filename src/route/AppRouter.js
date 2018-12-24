@@ -39,7 +39,6 @@ class AppRouter extends Component {
           <div>
             <SessionContext.Provider value={this.state.authUser}>
               <TopNavBar/>
-              <hr />
               <Route exact path={ROUTE.LANDING} component={MAIN_PAGE.LandingPage}/>
               <Route exact path={ROUTE.LOGIN} component={MAIN_PAGE.LoginPage}/>
               <Route exact path={ROUTE.REGISTER} component={MAIN_PAGE.RegisterPage}/>

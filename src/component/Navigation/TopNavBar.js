@@ -48,7 +48,7 @@ const TopNavBar = props => {
           menuClicked={() => setOpen(!open)}
           width={18}
           height={15}
-          strokeWidth={1}
+          strokeWidth={1.2}
           rotate={0}
           color='white'
           borderRadius={0}
