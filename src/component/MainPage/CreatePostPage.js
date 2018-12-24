@@ -4,7 +4,7 @@ import './CreatePostPage.css'
 
 import { Link } from 'react-router-dom'
 
-import mockMap from '../../res/mock-select-location.png'
+import mockMap from '../../res/images/mock-select-location.jpg'
 
 import Datetime from 'react-datetime'
 

@@ -36,11 +36,8 @@ const LandingPage = (props) => {
         <div>
             <img style={{width: "100%"}}src={BannerMock} />
             <sub>{locations.detail && locations.detail.name}</sub>
-            
             <Nearby title={"Nearby - " + locationName} storeArray={storeArray} cards={[{}, {}, {}]} />
-
             <Locations title="Location" locations={locations} />
-
             <Recommendation title="Recommendation" cards={[{}, {}, {}]} />
         </div>
     )
