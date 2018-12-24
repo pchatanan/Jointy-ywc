@@ -41,7 +41,7 @@ const LandingPage = (props) => {
                 <div style={{ backgroundImage: `url(${BannerMock})`, position: 'relative', height: '250px', width: `100%`, color: "white", backgroundSize: "cover" }}>
                     <div style={{ position: 'absolute', left: '10px', bottom: '0px' }}>
                         <h1>Starbuck 1 แถม 1 สุดคุ้มค่า เฉพาะในเว็บนี้เท่านั้น</h1>
-                        <Link to="/detail" style={{ textAlign: 'right' }}><button style={{ width: '20%', height: '50px', fontSize: '1.2em', border: 'none', marginTop: '20px', borderRadius: '15px', color: 'white', backgroundColor: '#e74c3c' }}>Vote</button></Link>
+                        <Link to="/detail" style={{ textAlign: 'right' }}><button style={{ width: '20%', height: '50px', fontSize: '1.2em', border: 'none', marginTop: '20px', marginBottom: '10px', borderRadius: '15px', color: 'white', backgroundColor: '#e74c3c' }}>Vote</button></Link>
                     </div>
                 </div>
                 <img src={LOGO} style={{ width: '71px', height: 'auto', position: 'absolute', top: '10px', left: '10px', zIndex: '50'}} />
