@@ -131,16 +131,25 @@ class Firebase {
     });
   }
 
-  getPromoFromId = (promoId, handlePosts) => {
+  getPromoFromId = (promoId, handlePromo) => {
     const dbRef = this.database.ref()
     const storePromosRef = dbRef.child("promos").child(promoId)
     return storePromosRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) {
-        var promoArray = Object.keys(snapshot.val());
-        handlePosts(snapshot.val())
+        handlePromo(snapshot.val())
       }
     });
   }
+
+  getPostFromId = (postId, handlePost) => {
+    const dbRef = this.database.ref()
+    const storePromosRef = dbRef.child("posts").child(postId)
+    return storePromosRef.on('value', (snapshot) => {
+      if (snapshot.val() !== null) {
+        handlePost(snapshot.val())
+      }
+    });
+  } 
 
 
 
