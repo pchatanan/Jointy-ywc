@@ -36,7 +36,7 @@ const LandingPage = (props) => {
     return (
         <div>
             <div className="only-mobile">
-                <img src={BannerMock} />
+                <img style={{width: "100%"}} src={BannerMock} />
                 <sub>{locations.detail && locations.detail.name}</sub>
 
                 <Nearby title={"Nearby - " + locationName} storeArray={storeArray} cards={[{}, {}, {}]} />
