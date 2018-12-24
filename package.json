@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "firebase": "^5.5.9",
+    "mobx": "^5.8.0",
+    "mobx-react": "^5.4.3",
     "prop-types": "latest",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",

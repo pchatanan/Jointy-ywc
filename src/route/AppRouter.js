@@ -7,6 +7,7 @@ import * as MAIN_PAGE from '../component/MainPage/MainPage'
 import TopNavBar from '../component/Navigation/TopNavBar'
 
 import {SessionContext, withFirebase} from '../component/Firebase/index'
+import Mobx, {MobxContext, withMobx} from '../component/Mobx/index'
 
 class AppRouter extends Component {
    constructor(props){
@@ -33,21 +34,23 @@ class AppRouter extends Component {
 
   render(){
     return (
-    <BrowserRouter>
-        <div>
-          <SessionContext.Provider value={this.state.authUser}>
-            <TopNavBar/>
-            <hr />
-            <Route exact path={ROUTE.LANDING} component={MAIN_PAGE.LandingPage}/>
-            <Route exact path={ROUTE.LOGIN} component={MAIN_PAGE.LoginPage}/>
-            <Route exact path={ROUTE.REGISTER} component={MAIN_PAGE.RegisterPage}/>
-            <Route exact path={ROUTE.HOME} component={MAIN_PAGE.Home}/>
-            <Route exact path={ROUTE.ACCOUNT} component={MAIN_PAGE.Account}/>
-          </SessionContext.Provider>
-        </div>
-    </BrowserRouter>
+    <MobxContext.Provider value={new Mobx()}>
+      <BrowserRouter>
+          <div>
+            <SessionContext.Provider value={this.state.authUser}>
+              <TopNavBar/>
+              <hr />
+              <Route exact path={ROUTE.LANDING} component={MAIN_PAGE.LandingPage}/>
+              <Route exact path={ROUTE.LOGIN} component={MAIN_PAGE.LoginPage}/>
+              <Route exact path={ROUTE.REGISTER} component={MAIN_PAGE.RegisterPage}/>
+              <Route exact path={ROUTE.HOME} component={MAIN_PAGE.Home}/>
+              <Route exact path={ROUTE.ACCOUNT} component={MAIN_PAGE.Account}/>
+            </SessionContext.Provider>
+          </div>
+      </BrowserRouter>
+    </MobxContext.Provider>
     )
   }
 }
 
-export default withFirebase(AppRouter);
+export default withMobx(withFirebase(AppRouter));
