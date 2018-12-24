@@ -49,6 +49,7 @@ class AppRouter extends Component {
               <Route path={ROUTE.PROMOTION_DETAIL} component={MAIN_PAGE.VotePage} />
               <Route path={ROUTE.PROMOTION_POSTS} component={MAIN_PAGE.PostPage} />
               <Route path={ROUTE.POST_DETAIL} component={MAIN_PAGE.PostDetailPage} />
+              <Route path={ROUTE.ARTICAL} component={MAIN_PAGE.ArticalPage} />
             </SessionContext.Provider>
           </div>
         </BrowserRouter>

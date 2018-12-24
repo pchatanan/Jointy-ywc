@@ -1,5 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
+import { Link } from 'react-router-dom'
 import Card from './Card'
 
 var settings = {
@@ -19,9 +20,12 @@ const Nearby = (props) => {
     }}>
         <h3>{props.title}</h3>
         <Slider {...settings} style={{ margin: 'auto' }}>
-            {props.cards.map(card => {
-                return <Card key={`card-${props.title}-${card.title}`} store={card} />
-            })}
+            <Link to={`/artical/1`}>
+            <div style={{ padding: '3px' }}>
+                <img style={{ borderRadius: '5px', width: '100%', height: '120px' }} src="https://i.imgur.com/sYMrwea.jpg" />
+                ซื้อ 3 แถม 1 แบ่งกันสวย ร่วมกันจอย by Watson
+            </div>
+            </Link>
         </Slider>
     </div >)
 }

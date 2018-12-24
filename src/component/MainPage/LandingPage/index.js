@@ -51,7 +51,7 @@ const LandingPage = (props) => {
 
                 <Locations title="Location" locations={locations} />
 
-                <Nearby title={"Recommendation"} storeArray={storeArray} cards={[{}, {}, {}]} />
+                <Recommendation title={"Recommendation"} />
             </div>
             <div className="desktop">
                 <h3>Please open on mobile view to continue.</h3>
