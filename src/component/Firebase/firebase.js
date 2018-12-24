@@ -39,28 +39,37 @@ class Firebase {
     });
   }
 
-  createPost = (postData, storeId) => {
+  createPost = (postData, storeId, oldPromoId) => {
     const dbRef = this.database.ref()
     const postId = dbRef.child("posts").push().key
-    const { posterId, title } = postData
-
-    // add new promotion
-    const promoId = dbRef.child("promos").push().key
     var temp = {}
     temp[postId] = true
-    const promoData = {
-      detail: {
-        storeId: storeId,
-        title: title,
-        verified: false
-      },
-      promoPosts: temp
-    }
+    const { posterId, title } = postData
 
     var updates = {};
+
+    // add new promotion
+    const promoId = null
+    if(!oldPromoId){
+      promoId = dbRef.child("promos").push().key
+      const promoData = {
+        detail: {
+          storeId: storeId,
+          title: title,
+          verified: false
+        },
+        promoPosts: temp
+      }
+      updates['/promos/' + promoId] = promoData;
+    }
+    else{
+      promoId = oldPromoId
+      updates['/promos/' + promoId + '/promoPosts/' + postId] = true;
+    }
+    
     updates['/posts/' + postId] = postData;
     updates['/users/' + posterId + '/postCreated/' + postId] = true;
-    updates['/promos/' + promoId] = promoData;
+    
     updates['/stores/' + storeId + '/storePromos/' + promoId] = true;
 
     return dbRef.update(updates);
