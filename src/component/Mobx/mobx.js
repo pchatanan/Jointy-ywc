@@ -1,5 +1,5 @@
 class Mobx {
-
+    value = "123"
 }
 
 
