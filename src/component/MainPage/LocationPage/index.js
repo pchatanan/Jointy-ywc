@@ -1,7 +1,7 @@
 import React, { useContext, useEffect,useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { FirebaseContext } from '../../Firebase'
-import StoreWithPromos from './StoreWithPromos'
+// import StoreWithPromos from './StoreWithPromos'
 
 const LocationPage = props => {
     const firebase = useContext(FirebaseContext)
@@ -20,9 +20,9 @@ const LocationPage = props => {
         if (location !== null) {
             var storeIdArray = Object.keys(location.locationStores)
             var content = []
-            storeIdArray.map((item, index) => {
-                content.push(<Link to={item}>{<StoreWithPromos storeId={item} />}</Link>)
-            })
+            // storeIdArray.map((item, index) => {
+            //     content.push(<Link to={item}>{<StoreWithPromos storeId={item} />}</Link>)
+            // })
             return content
         }
     }
