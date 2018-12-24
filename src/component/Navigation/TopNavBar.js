@@ -19,13 +19,13 @@ const TopNavBar = props => {
   const NavAuth = () => (
     <ul>
       <li>
-        <Link to={ROUTE.LANDING}>Landing</Link>
+        <Link to={ROUTE.LANDING} onClick={() => setOpen(!open)}>Landing</Link>
       </li>
       <li>
-        <Link to={ROUTE.CREATE_POST}>Create Post</Link>
+        <Link to={ROUTE.CREATE_POST} onClick={() => setOpen(!open)}>Create Post</Link>
       </li>
       <li>
-        <Link to={ROUTE.ACCOUNT}>Account</Link>
+        <Link to={ROUTE.ACCOUNT} onClick={() => setOpen(!open)}>Account</Link>
       </li>
       <li>
         <SignOutButton />
@@ -36,10 +36,10 @@ const TopNavBar = props => {
   const NavNonAuth = () => (
     <ul>
       <li>
-        <Link to={ROUTE.LANDING}>Landing</Link>
+        <Link to={ROUTE.LANDING} onClick={() => setOpen(!open)}>Landing</Link>
       </li>
       <li>
-        <Link to={ROUTE.LOGIN}>Login</Link>
+        <Link to={ROUTE.LOGIN} onClick={() => setOpen(!open)}>Login</Link>
       </li>
     </ul>
   );
@@ -61,7 +61,7 @@ const TopNavBar = props => {
           height={15}
           strokeWidth={1.2}
           rotate={0}
-          color='white'
+          color='#e74c3c'
           borderRadius={0}
           animationDuration={0.5}
         />

@@ -6,7 +6,7 @@ import recommandationMock from '../../../res/images/recommendationMock.jpg'
 const Card = (props) => {
     return (<div style={{ padding: '3px' }}>
         <img style={{ borderRadius: '5px', width: '100%', height: 'auto' }} src={recommandationMock} />
-        <Link to={`/stores/${props.link}`}>{props.store ? props.store.detail.name : ""}</Link>
+        <Link to={`/location/${props.link}`}>{props.store ? props.store.detail.name : ""}</Link>
     </div>)
 }
 
