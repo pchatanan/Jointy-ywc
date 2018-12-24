@@ -49,7 +49,7 @@ const CreatePostPage = (props) => {
             firebase.getPromoFromId(promoId, (promo) => {
                 var temp = promoOption
 
-                var option = { value: promoId, label: promo.title }
+                var option = { value: promoId, label: promo.detail.title }
                 temp.push(option)
                 console.log("***********************")
                 console.log(temp)
