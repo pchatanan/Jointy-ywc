@@ -136,7 +136,7 @@ class Firebase {
     const storePromosRef = dbRef.child("promos").child(promoId)
     return storePromosRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) {
-        handlePromo([promoId, snapshot.val()])
+        handlePromo(snapshot.val())
       }
     });
   }
