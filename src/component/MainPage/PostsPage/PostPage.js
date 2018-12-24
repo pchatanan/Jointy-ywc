@@ -8,25 +8,33 @@ const PostPage = (props) => {
 
     const [postArray, setPostArray] = useState([])
 
-    useEffect( () => {
+    useEffect(() => {
         firebase.getPromoFromId(id, (promotion) => {
             console.log(promotion)
-            Object.keys(promotion.promoPosts).map( (postId) => {
+            Object.keys(promotion.promoPosts).map((postId) => {
                 firebase.getPostFromId(postId, handlePost)
             })
         })
     }, [id])
 
-    const handlePost = (post) => {
+    const handlePost = ([postId, post]) => {
+        console.log(postId)
         var temp = postArray
-        temp.push(post)
+        temp.push({ id: postId, item: post })
         setPostArray(temp)
     }
 
     const createPostItem = posts => {
         var content = []
         posts.map(item => {
-            content.push(<div>{JSON.stringify(item)}</div>)
+            console.log(item)
+            content.push(
+                <Link to={`/post/${item.id}`}>
+                    <div>
+                        <h3>{item.item.title}</h3>
+                        <div>{item.item.detail}</div>
+                    </div>
+                </Link>)
         })
         return content
     }
@@ -35,9 +43,9 @@ const PostPage = (props) => {
         <div>Promotion detail</div>
         <div>posts</div>
         <ul>
-            <Link to={`/promo/${id}/detail`}>li</Link>
+
+            {createPostItem(postArray)}
         </ul>
-        {createPostItem(postArray)}
     </div>)
 }
 
