@@ -6,6 +6,8 @@ import { FirebaseContext } from '../Firebase';
 
 import { useFormInput } from '../Hook'
 
+const profileImg = "https://www.google.co.th/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwimquvmvrffAhUJQ48KHcIMBDYQjRx6BAgBEAU&url=https%3A%2F%2Fkooledge.com%2Fusers%2Fsign_up&psig=AOvVaw0w2ebEQg-dMKrX5tLFAA9Z&ust=1545707309223402"
+
 const RegisterPage = props => (
   <div>
     <h1>Register</h1>
@@ -27,7 +29,24 @@ const RegisterForm = withRouter(props => {
       .doCreateUserWithEmailAndPassword(email.value, passwordOne.value)
       .then(authUser => {
         console.log("successfully registered!");
-        props.history.push(ROUTE.LANDING);
+        authUser.user.updateProfile({ // <-- Update Method here
+          displayName: username.value,
+          photoURL: profileImg
+        }).then(() => {
+          console.log("updateProfile success")
+          firebase.writeUserData(authUser.user.uid, username.value, email.value, profileImg)
+          .then(()=>{
+            props.history.push(ROUTE.LANDING);
+          })
+          .catch(error => {
+            console.log(error);
+            setError(error)
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          setError(error)
+        });
       })
       .catch(error => {
         console.log(error);
