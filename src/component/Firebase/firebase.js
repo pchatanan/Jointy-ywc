@@ -146,10 +146,15 @@ class Firebase {
     const storePromosRef = dbRef.child("posts").child(postId)
     return storePromosRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) {
-        handlePost(snapshot.val())
+        handlePost([postId, snapshot.val()])
       }
     });
   } 
+
+  joinPost = (joiner, postId) => {
+    const dbRef = this.database.ref()
+    var updates = {};
+  }
 
 
 
