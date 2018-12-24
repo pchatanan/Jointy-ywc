@@ -46,15 +46,15 @@ class Firebase {
     
     // add new promotion
     const promoId = dbRef.child("promos").push().key
+    var temp = {}
+    temp[postId] = true
     const promoData = {
       detail: {
         storeId: storeId,
         title: title,
         verified: false
       },
-      promoPosts: {
-        postId: true
-      }
+      promoPosts: temp
     }
 
     var updates = {};
@@ -64,8 +64,38 @@ class Firebase {
     updates['/stores/' + storeId + '/storePromos/' + promoId] = true;
 
     return dbRef.update(updates);
-
   }
+
+  getPromosFromStore = (storeId, handlePromos) => {
+    const dbRef = this.database.ref()
+    console.log(storeId)
+    const storePromosRef = dbRef.child("stores").child(storeId).child("storePromos")
+    return storePromosRef.on('value', (snapshot) => {
+      if (snapshot.val() !== null) {
+        var promoArray = Object.keys(snapshot.val());
+        handlePromos(promoArray)
+      }
+    });
+  }
+
+  getPromoFromId = (promoId, handlePromo) => {
+    const dbRef = this.database.ref()
+    const promoDetailRef = dbRef.child("promos").child(promoId).child("detail")
+    return promoDetailRef.on('value', (snapshot) => {
+      var promoDetail = snapshot.val()
+      console.log(promoDetail)
+      handlePromo(promoDetail)
+    });
+  }
+
+  getStoreNameFromId = (storeId, handleStoreName) => {
+    const dbRef = this.database.ref()
+    const storeName = dbRef.child("stores").child(storeId).child("name")
+    return storeName.on('value', (snapshot) => {
+      handleStoreName(snapshot.val())
+    });
+  }
+
 
 
 }
