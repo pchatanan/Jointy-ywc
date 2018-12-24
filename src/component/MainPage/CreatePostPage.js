@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useFormInput } from '../Hook'
 import './CreatePostPage.css'
+
+import { Link } from 'react-router-dom'
+
 import mockMap from '../../res/mock-select-location.png'
 
 import Datetime from 'react-datetime'
@@ -134,7 +137,7 @@ const CreatePostPage = (props) => {
                         placeholder="Detail"
                     />
                 </div>
-                <button className="submit-btn" onClick={submitClick} style={{ background: '#e74c3c', color: 'white', borderRadius: '10px', height: '50px', fontSize: '1.3em' }}>Submit</button>
+                <Link to="/"><button className="submit-btn" onClick={submitClick} style={{ background: '#e74c3c', color: 'white', borderRadius: '10px', height: '50px', fontSize: '1.3em' }}>Submit</button></Link>
             </>
         )
     }
