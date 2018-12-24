@@ -107,6 +107,16 @@ class Firebase {
     });
   }
 
+  getLocationFromId = (locationId, handleLocation) => {
+    const dbRef = this.database.ref()
+    const storePromosRef = dbRef.child("locations").child(locationId)
+    return storePromosRef.on('value', (snapshot) => {
+      if (snapshot.val() !== null) {
+        handleLocation(snapshot.val())
+      }
+    });
+  }
+
 
 
 }
