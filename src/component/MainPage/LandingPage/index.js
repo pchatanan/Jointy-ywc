@@ -18,7 +18,7 @@ const LandingPage = (props) => {
 
     useEffect(() => {
         firebase.readStoresFromLocations().then((snap) => setLocations(snap.val()))
-        firebase.getLocationFromId(locationId, handleLocation) 
+        firebase.getLocationFromId(locationId, handleLocation)
     }, [locationId])
 
     const handleLocation = (location) => {
@@ -32,22 +32,22 @@ const LandingPage = (props) => {
             })
         })
     }
-    
+
     return (
         <div>
-        <div className="only-mobile">
-            <img src={BannerMock} />
-            <sub>{locations.detail && locations.detail.name}</sub>
-            
-            <Nearby title={"Nearby - " + locationName} storeArray={storeArray} cards={[{}, {}, {}]} />
+            <div className="only-mobile">
+                <img src={BannerMock} />
+                <sub>{locations.detail && locations.detail.name}</sub>
 
-            <Locations title="Location" locations={locations} />
+                <Nearby title={"Nearby - " + locationName} storeArray={storeArray} cards={[{}, {}, {}]} />
 
-            <Recommendation title="Recommendation" cards={[{}, {}, {}]} />
-        </div>
-        <div className="desktop">
-            <h3>Please open on mobile view to continue.</h3>
-        </div>
+                <Locations title="Location" locations={locations} />
+
+                <Nearby title={"Recommendation"} storeArray={storeArray} cards={[{}, {}, {}]} />
+            </div>
+            <div className="desktop">
+                <h3>Please open on mobile view to continue.</h3>
+            </div>
         </div>
     )
 }
