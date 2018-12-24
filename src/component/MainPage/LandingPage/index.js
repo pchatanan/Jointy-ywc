@@ -22,9 +22,19 @@ const LandingPage = (props) => {
         <div>
             <img src={BannerMock} />
             <CardWrapper title="Nearby" cards={[{}, {}, {}]} />
-            
-            <CardWrapper title="Location" cards={[{}, {}, {}]} />
-            
+
+            <CardWrapper title="Location" cards={[{
+                store: {
+                    storeId: '1',
+                    title: "Lakabung university"
+                }
+            }, {
+                store: {
+                    storeId: '2',
+                    title: "Paragon"
+                }
+            }, {}]} />
+
             <CardWrapper title="Recommendation" cards={[{}, {}, {}]} />
         </div>
     )

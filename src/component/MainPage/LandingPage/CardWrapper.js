@@ -21,7 +21,7 @@ const CardWrapper = (props) => {
         <h3>{props.title}</h3>
         <Slider {...settings} style={{ margin: 'auto' }}>
             {props.cards.map(card => {
-                return <Card key={`card-${props.title}-${card.title}`} />
+                return <Card key={`card-${props.title}-${card.title}`} store={card} />
             })}
         </Slider>
     </div >)
