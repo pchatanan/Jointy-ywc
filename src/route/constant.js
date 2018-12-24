@@ -7,3 +7,4 @@ export const ADMIN = '/admin';
 export const PASSWORD_FORGET = '/pw-forget';
 export const CREATE_POST = '/createPost'
 export const STORE = "/stores/:id"
+export const PROMOTIONS = "/stores/:id/promotions"

@@ -10,7 +10,7 @@ var settings = {
     slidesToScroll: 1
 };
 
-const CardWrapper = (props) => {
+const Nearby = (props) => {
     return (<div style={{
         marginLeft: '10px',
         marginTop: '10px',
@@ -26,5 +26,5 @@ const CardWrapper = (props) => {
     </div >)
 }
 
-export default CardWrapper
+export default Nearby
 
