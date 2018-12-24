@@ -79,6 +79,7 @@ const CreatePostPage = (props) => {
             endTime: endTime, //TODO: select Date,
             posterId: currentUser.uid,
             maxPeople: maxPeople.value,
+            currentPeople: 0,
             detail: detail.value
         }
         console.log(postData)

@@ -136,7 +136,7 @@ class Firebase {
     const storePromosRef = dbRef.child("promos").child(promoId)
     return storePromosRef.on('value', (snapshot) => {
       if (snapshot.val() !== null) {
-        handlePromo(snapshot.val())
+        handlePromo([promoId, snapshot.val()])
       }
     });
   }
@@ -153,7 +153,22 @@ class Firebase {
 
   joinPost = (joiner, postId) => {
     const dbRef = this.database.ref()
+    this.incrementJoin(postId)
     var updates = {};
+    updates['/users/' + joiner + '/postJoined/' + postId] = true;
+  }
+
+  incrementJoin = (postId) => {
+    const dbRef = this.database.ref()
+    const postRef = dbRef.child("posts").child(postId)
+    postRef.transaction((post) => {
+      if (post) {
+        if(post.currentPeople < post.maxPeople){
+          post.starCount++;
+        }
+      }
+      return post;
+    })
   }
 
 
