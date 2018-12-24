@@ -21,9 +21,6 @@ const TopNavBar = props => {
         <Link to={ROUTE.LANDING}>Landing</Link>
       </li>
       <li>
-        <Link to={ROUTE.HOME}>Home</Link>
-      </li>
-      <li>
         <Link to={ROUTE.ACCOUNT}>Account</Link>
       </li>
       <li>
@@ -44,18 +41,20 @@ const TopNavBar = props => {
   );
 
   return (
-    <div>
-      <HamburgerMenu
-        isOpen={open}
-        menuClicked={() => setOpen(!open)}
-        width={18}
-        height={15}
-        strokeWidth={1}
-        rotate={0}
-        color='black'
-        borderRadius={0}
-        animationDuration={0.5}
-      />
+    <div style={{ position: 'fixed', top: '0px', left: '0px', backgroundColor: 'white', width: '100%' }}>
+      <div style={{ position: 'fixed', top: '10px', right: '10px' }}>
+        <HamburgerMenu
+          isOpen={open}
+          menuClicked={() => setOpen(!open)}
+          width={18}
+          height={15}
+          strokeWidth={1}
+          rotate={0}
+          color='white'
+          borderRadius={0}
+          animationDuration={0.5}
+        />
+      </div>
       {open ? <div>{authUser ? <NavAuth /> : <NavNonAuth />}</div> : null}
 
     </div>
