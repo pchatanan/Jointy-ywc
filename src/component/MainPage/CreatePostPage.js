@@ -44,7 +44,7 @@ const CreatePostPage = (props) => {
             firebase.getPromoFromId(promoId, (promo) => {
                 var temp = promoOption
 
-                var option = { value: promo.title, label: promo.title }
+                var option = { value: promoId, label: promo.title }
                 temp.push(option)
                 console.log("***********************")
                 console.log(temp)
@@ -79,7 +79,6 @@ const CreatePostPage = (props) => {
         console.log(postData)
         firebase.createPost(postData, storeId)
         
-
     }
 
     const handleChange = (newValue, actionMeta) => {
