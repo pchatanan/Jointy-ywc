@@ -5,6 +5,7 @@ import BannerMock from '../../../res/images/bannerMock.jpg'
 // import CardWrapper from './CardWrapper'
 import Locations from './Location';
 import Recommendation from './Recommendation'
+import './index.css'
 
 const LandingPage = (props) => {
     const [locations, setLocations] = useState([])
@@ -33,6 +34,7 @@ const LandingPage = (props) => {
     
     return (
         <div>
+        <div className="only-mobile">
             <img src={BannerMock} />
             <sub>{locations.detail && locations.detail.name}</sub>
             <Nearby title="Nearby" storeArray={storeArray} cards={[{}, {}, {}]} />
@@ -40,6 +42,10 @@ const LandingPage = (props) => {
             <Locations title="Location" locations={locations} />
 
             <Recommendation title="Recommendation" cards={[{}, {}, {}]} />
+        </div>
+        <div className="desktop">
+            <h3>Please open on mobile view to continue.</h3>
+        </div>
         </div>
     )
 }
