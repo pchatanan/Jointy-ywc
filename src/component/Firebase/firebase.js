@@ -51,6 +51,7 @@ class Firebase {
     // add new promotion
     let promoId = null
     if(!oldPromoId){
+      console.log("Create New Promo")
       promoId = dbRef.child("promos").push().key
       const promoData = {
         detail: {
@@ -63,6 +64,7 @@ class Firebase {
       updates['/promos/' + promoId] = promoData;
     }
     else{
+      console.log("Added Promo Selected")
       promoId = oldPromoId
       updates['/promos/' + promoId + '/promoPosts/' + postId] = true;
     }
