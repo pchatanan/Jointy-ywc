@@ -1,10 +1,11 @@
-import React, {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTE from '../../route/constant';
 import { FirebaseContext, SessionContext } from '../Firebase';
+import HamburgerMenu from 'react-hamburger-menu'
 
 const TopNavBar = props => {
-
+  const [open, setOpen] = useState(false)
   const firebase = useContext(FirebaseContext)
   const authUser = useContext(SessionContext)
 
@@ -30,7 +31,7 @@ const TopNavBar = props => {
       </li>
     </ul>
   );
-  
+
   const NavNonAuth = () => (
     <ul>
       <li>
@@ -41,9 +42,21 @@ const TopNavBar = props => {
       </li>
     </ul>
   );
-  
-  return(
-    <div>{authUser ? <NavAuth /> : <NavNonAuth />}</div>
+
+  return (
+    <div>
+      <HamburgerMenu
+        isOpen={open}
+        menuClicked={() => setOpen(!open)}
+        width={18}
+        height={15}
+        strokeWidth={1}
+        rotate={0}
+        color='black'
+        borderRadius={0}
+        animationDuration={0.5}
+      />
+      {authUser ? <NavAuth /> : <NavNonAuth />}</div>
   )
 };
 
