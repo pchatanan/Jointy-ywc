@@ -1,5 +1,5 @@
-import React, {useState, useContext, useEffect} from 'react'
-import {useFormInput} from '../Hook'
+import React, { useState, useContext, useEffect } from 'react'
+import { useFormInput } from '../Hook'
 import './CreatePostPage.css'
 import mockMap from '../../res/mock-select-location.png'
 
@@ -26,20 +26,22 @@ const CreatePostPage = (props) => {
 
     const [promoOption, setPromoOption] = useState([]);
 
+    const [newPromo, setNewPromo] = useState(null)
+
     useEffect(() => {
-        if(storeId !== null){
+        if (storeId !== null) {
             firebase.getPromosFromStore(storeId, handlePromos)
         }
     }, [storeId])
-    
-    const title = useFormInput("")
+
+    const [title, setTitle] = useState("")
     const category = useFormInput("foodAndBeverage")
     const maxPeople = useFormInput(1)
     const [endTime, setEndTime] = useState(null)
     const detail = useFormInput("")
 
     const handlePromos = (promoArray) => {
-        for (let i = 0; i < promoArray.length; i++) { 
+        for (let i = 0; i < promoArray.length; i++) {
             var promoId = promoArray[i]
             firebase.getPromoFromId(promoId, (promo) => {
                 var temp = promoOption
@@ -69,7 +71,7 @@ const CreatePostPage = (props) => {
     const submitClick = () => {
         let postData = {
             status: "created",
-            title: title.value,
+            title: title,
             category: category.value, //TODO: select category
             endTime: endTime, //TODO: select Date,
             posterId: currentUser.uid,
@@ -77,23 +79,23 @@ const CreatePostPage = (props) => {
             detail: detail.value
         }
         console.log(postData)
-        firebase.createPost(postData, storeId)
-        
-
+        firebase.createPost(postData, storeId, newPromo)
     }
 
     const handleChange = (newValue, actionMeta) => {
         console.log("**************")
         console.log(storeId)
-        if(actionMeta.action === 'create-option'){
-            console.log("option-created")
+        setTitle(newValue)
+        if (actionMeta.action === 'create-option') {
+            setNewPromo(newValue)
+
         }
         else {
-            console.log("option-selected")
+            setNewPromo(null)
         }
     };
 
-    if(locationSelected){
+    if (locationSelected) {
         useEffect(() => {
             firebase.getStoreNameFromId(storeId, (name) => {
                 setStoreName(name)
@@ -101,46 +103,47 @@ const CreatePostPage = (props) => {
         }, [storeId])
         return (
             <>
-            <div className="form-container">
-            <div>Create Post</div>
-            <div>{storeName}</div>
-            <input
-              {...title}
-              type="text"
-              placeholder="Title"
-            />
-            <CreatableSelect
-                isClearable
-                onChange={handleChange}
-                options={promoOption}
-                key={forceKey}/>
-            <select {...category}>
-                <option value="foodAndBeverage">Food & Beverage</option>
-                <option value="lifestyle">Lifestyle</option>
-                <option value="shop">Shopping</option>
-            </select>
-            <input
-                type="text"
-                pattern="[0-9]*"
-                {...maxPeople}
-                placeholder="People needed more" />
-            <Datetime onChange={endTimeHandler}/>
-            <textarea className="detail"
-              {...detail}
-              type="text"
-              placeholder="Detail"
-            />
-            </div>
-            <button className="submit-btn" onClick={submitClick}>Submit</button>
+                <div className="form-container" style={{ margin: '10px' }}>
+                    <div style={{ textAlign: 'center' }}>Add promotion</div>
+                    <div style={{ textAlign: 'center' }}>{storeName}</div>
+                    <b>Pro name</b>
+                    <CreatableSelect
+                        isClearable
+                        onChange={handleChange}
+                        options={promoOption}
+                        key={forceKey} />
+                    <b>Category</b>
+                    <select {...category} style={{ height: '35px' }}>
+                        <option value="foodAndBeverage">Food & Beverage</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="shop">Shopping</option>
+                    </select>
+                    <b>People need more</b>
+                    <input
+                        style={{ height: '30px' }}
+                        type="text"
+                        pattern="[0-9]*"
+                        {...maxPeople}
+                        placeholder="People needed more" />
+                    <b>Time</b>
+                    <Datetime onChange={endTimeHandler} />
+                    <textarea className="detail"
+                        style={{ height: '160px' }}
+                        {...detail}
+                        type="text"
+                        placeholder="Detail"
+                    />
+                </div>
+                <button className="submit-btn" onClick={submitClick} style={{ background: '#e74c3c', color: 'white', borderRadius: '10px', height: '50px', fontSize: '1.3em' }}>Submit</button>
             </>
         )
     }
     else {
         return (
-            <img calssName="mock-map-select-store" onClick={imgClick} src={mockMap}/>
+            <img calssName="mock-map-select-store" onClick={imgClick} style={{ width: '100%', height: '100vh' }} src={mockMap} />
         )
     }
-    
+
 }
 
 export default CreatePostPage;

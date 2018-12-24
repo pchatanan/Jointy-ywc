@@ -5,8 +5,9 @@
 
 .submit-btn {
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    bottom: 10px;
+    width: 90%;
+    left: 5%;
 }
 
 .mock-map-select-store {
