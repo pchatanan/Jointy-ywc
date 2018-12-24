@@ -1,6 +1,7 @@
 import React, { Component, useContext, useEffect, useState } from 'react'
 import { FirebaseContext } from '../../Firebase'
 import Nearby from './Nearby'
+import { Link } from 'react-router-dom'
 import BannerMock from '../../../res/images/bannerMock.jpg'
 // import CardWrapper from './CardWrapper'
 import Locations from './Location';
@@ -36,7 +37,13 @@ const LandingPage = (props) => {
     return (
         <div>
             <div className="only-mobile">
-                <img style={{width: "100%"}} src={BannerMock} />
+                <div style={{ backgroundImage: `url(${BannerMock})`, position: 'relative', height: '250px', width: `100%`, color: "white", backgroundSize: "cover" }}>
+                    <div style={{ position: 'absolute', left: '10px', bottom: '0px' }}>
+                        <h1>Starbuck 1 แถม 1 สุดคุ้มค่า เฉพาะในเว็บนี้เท่านั้น</h1>
+                        <Link to="/detail" style={{ textAlign: 'right' }}><button style={{ width: '20%', height: '50px', fontSize: '1.2em', border: 'none', marginTop: '20px', borderRadius: '15px', color: 'white', backgroundColor: '#e74c3c' }}>Vote</button></Link>
+                    </div>
+                </div>
+                {/* <img style={{ width: "100%" }} src={BannerMock} /> */}
                 <sub>{locations.detail && locations.detail.name}</sub>
 
                 <Nearby title={"Nearby - " + locationName} storeArray={storeArray} cards={[{}, {}, {}]} />
