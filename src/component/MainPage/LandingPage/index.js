@@ -13,6 +13,7 @@ const LandingPage = (props) => {
     const firebase = useContext(FirebaseContext)
 
     const locationId = 'locationId1'
+    const [locationName, setLocationName] = useState("loading")
 
     useEffect(() => {
         firebase.readStoresFromLocations().then((snap) => setLocations(snap.val()))
@@ -20,7 +21,7 @@ const LandingPage = (props) => {
     }, [locationId])
 
     const handleLocation = (location) => {
-        console.log(location)
+        setLocationName(location.detail.name)
         let name = []
         Object.keys(location.locationStores).forEach(async key => {
             await firebase.getStoreFromId(key, (store) => {
@@ -35,7 +36,8 @@ const LandingPage = (props) => {
         <div>
             <img src={BannerMock} />
             <sub>{locations.detail && locations.detail.name}</sub>
-            <Nearby title="Nearby" storeArray={storeArray} cards={[{}, {}, {}]} />
+            
+            <Nearby title={"Nearby - " + locationName} storeArray={storeArray} cards={[{}, {}, {}]} />
 
             <Locations title="Location" locations={locations} />
 
