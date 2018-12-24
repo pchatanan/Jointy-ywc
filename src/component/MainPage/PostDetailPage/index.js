@@ -35,7 +35,7 @@ const PostDetailPage = (props) => {
         )
     }
 
-    return (<div><h1 style={{ textAlign: 'center' }}>Add Promotion</h1>
+    return (<div><h1 style={{ textAlign: 'center' }}>Post Detail</h1>
         <div style={{ width: '95%', borderRadius: '5px' }}>
             <div style={{ textAlign: 'center' }}>
                 <img src="" style={{ width: '70px', height: '70px' }} />
