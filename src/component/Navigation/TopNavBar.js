@@ -56,7 +56,9 @@ const TopNavBar = props => {
         borderRadius={0}
         animationDuration={0.5}
       />
-      {authUser ? <NavAuth /> : <NavNonAuth />}</div>
+      {open ? <div>{authUser ? <NavAuth /> : <NavNonAuth />}</div> : null}
+
+    </div>
   )
 };
 

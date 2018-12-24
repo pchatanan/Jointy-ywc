@@ -27,7 +27,7 @@ const RegisterForm = withRouter(props => {
       .doCreateUserWithEmailAndPassword(email.value, passwordOne.value)
       .then(authUser => {
         console.log("successfully registered!");
-        props.history.push(ROUTE.HOME);
+        props.history.push(ROUTE.LANDING);
       })
       .catch(error => {
         console.log(error);
