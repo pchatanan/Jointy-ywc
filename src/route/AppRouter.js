@@ -43,6 +43,7 @@ class AppRouter extends Component {
               <Route exact path={ROUTE.LOGIN} component={MAIN_PAGE.LoginPage}/>
               <Route exact path={ROUTE.REGISTER} component={MAIN_PAGE.RegisterPage}/>
               <Route exact path={ROUTE.ACCOUNT} component={MAIN_PAGE.Account}/>
+              <Route exact path={ROUTE.CREATE_POST} component={MAIN_PAGE.CreatePostPage}/>
             </SessionContext.Provider>
           </div>
       </BrowserRouter>

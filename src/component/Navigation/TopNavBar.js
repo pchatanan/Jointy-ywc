@@ -21,6 +21,9 @@ const TopNavBar = props => {
         <Link to={ROUTE.LANDING}>Landing</Link>
       </li>
       <li>
+        <Link to={ROUTE.CREATE_POST}>Create Post</Link>
+      </li>
+      <li>
         <Link to={ROUTE.ACCOUNT}>Account</Link>
       </li>
       <li>
