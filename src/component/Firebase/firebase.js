@@ -49,7 +49,7 @@ class Firebase {
     var updates = {};
 
     // add new promotion
-    const promoId = null
+    let promoId = null
     if(!oldPromoId){
       promoId = dbRef.child("promos").push().key
       const promoData = {
